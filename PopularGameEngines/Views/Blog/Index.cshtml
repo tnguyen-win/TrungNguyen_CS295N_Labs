@@ -5,5 +5,23 @@
 <div class="mt-sm-5">
     <h1 class="display-4">@ViewData["Title"]</h1>
     <br />
-    <p>Blog.</p>
+    @* Posts *@
+    <h3>Latest posts:</h3>
+    <br />
+    <div class="border border-light">
+        @* Post By - Jane Doe *@
+        <a href="javascript:void(0)">
+            <div class="border-bottom border-light p-3">
+                <h1>Lorem ipsum 2</h1>
+                <small>by Jane Doe</small>
+            </div>
+        </a>
+        @* Post By - John Smith *@
+        <a href="javascript:void(0)">
+            <div class="p-3">
+                <h1>Lorem ipsum 1</h1>
+                <small>by John Smith</small>
+            </div>
+        </a>
+    </div>
 </div>

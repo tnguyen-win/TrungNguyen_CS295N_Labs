@@ -2,8 +2,6 @@
 
 namespace PopularGameEngines.Controllers {
     public class ScriptingController : Controller {
-        public IActionResult Index() {
-            return View();
-        }
+        public IActionResult Index() => View();
     }
 }

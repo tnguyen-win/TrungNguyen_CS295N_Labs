@@ -8,54 +8,62 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/PopularGameEngines.styles.css" asp-append-version="true" />
 </head>
-<body>
+<body class="bg-dark text-secondary">
+    @* Navbar *@
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark border-bottom border-light box-shadow mb-3">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Popular Game Engines</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
+                            @* Home *@
                             <div class="dropdown">
-                                <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Home</button>
-                                <ul class="dropdown-menu">
+                                <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Home</button>
+                                <ul class="bg-dark dropdown-menu">
+                                    @* Overview *@
                                     <li>
-                                        <a class="dropdown-item text-dark" asp-area="" asp-controller="Home" asp-action="Index">Homepage</a>
+                                        <a class="dropdown-item text-light" asp-area="" asp-controller="Home" asp-action="Overview">Overview</a>
                                     </li>
+                                    @* Home *@
                                     <li>
-                                        <a class="dropdown-item text-dark" asp-area="" asp-controller="Home" asp-action="Overview">Overview</a>
+                                        <a class="dropdown-item text-light" asp-area="" asp-controller="Home" asp-action="Index">Homepage</a>
                                     </li>
+                                    @* References *@
                                     <li>
-                                        <a class="dropdown-item text-dark" asp-area="" asp-controller="Home" asp-action="References">References</a>
+                                        <a class="dropdown-item text-light" asp-area="" asp-controller="Home" asp-action="References">References</a>
                                     </li>
                                 </ul>
                             </div>
                         </li>
+                        @* Blog *@
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Blog" asp-action="Index">Blog</a>
                         </li>
+                        @* Scripting *@
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Blog" asp-action="Index">Blog</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Scripting" asp-action="Index">Scripting</a>
                         </li>
+                        @* Privacy *@
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Scripting" asp-action="Index">Scripting</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container">
+    @* Body *@
+    <main class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
-    </div>
-
-    <footer class="border-top footer text-muted">
+    </main>
+    @* Footer *@
+    <footer class="border-top border-light footer text-muted">
         <div class="container">
             &copy; 2023 - PopularGameEngines - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
