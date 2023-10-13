@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Popular Game Engines</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/PopularGameEngines.styles.css" asp-append-version="true" />
+</head>
+<body class="bg-dark" data-bs-theme="dark">
+    @* Navbar *@
+    <header>
+        <nav class="navbar navbar-expand-lg border-bottom border-dark-subtle shadow-lg mb-5 mb-lg-0">
+            <div class="container-fluid">
+                <a class="navbar-brand text-info fw-bold" asp-area="" asp-controller="Home" asp-action="Index">Popular Game Engines</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item dropdown">
+                            @* Home *@
+                            <button class="nav-link dropdown-toggle text-light" data-bs-toggle="dropdown" aria-expanded="false">Home</button>
+                            <ul class="dropdown-menu">
+                                @* Overview *@
+                                <li>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Overview">Overview</a>
+                                </li>
+                                @* Homepage *@
+                                <li>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Index">Homepage</a>
+                                </li>
+                                @* References *@
+                                <li>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="References">References</a>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider mb-0">
+                                </li>
+                                <li>
+                                    <a class="dropdown-item mb-lg-1" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                                </li>
+                            </ul>
+                        </li>
+                        @* Blog *@
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Blog" asp-action="Index">Blog</a>
+                        </li>
+                        @* Scripting *@
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Scripting" asp-action="Index">Scripting</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    @* Body *@
+    <div class="container">
+        <main role="main">@RenderBody()</main>
+    </div>
+    @* Footer *@
+    <footer class="text-muted border-top border-dark-subtle shadow-lg-hack mt-5 p-5">
+        <div class="container">&copy; 2023 - PopularGameEngines - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
