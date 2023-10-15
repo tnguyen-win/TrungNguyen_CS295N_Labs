@@ -7,6 +7,14 @@ a:active {
 	color: #87CEEB !important;
 }
 
+form * {
+	margin: 0.5rem 0;
+}
+
+label {
+	margin-right: 1rem;
+}
+
 .dropdown-menu li a:hover,
 .dropdown-menu li a:active {
 	color: black !important;
