@@ -13,20 +13,18 @@
                     <div class="d-flex card-body">
                         <div class="w-100">
                             <h1 class="card-title fw-bold">@Model.Title</h1>
-                            <div class="d-flex my-auto">
-                                <p class="card-text me-auto">@Model.Text</p>
-                                <p>Rating: @Model.Rating</p>
-                            </div>
+                            <p class="card-text me-auto">@Model.Text</p>
                         </div>
                     </div>
-                    <div class="d-flex card-footer text-body-secondary">
-                        <small class="me-auto">created by @Model.Author</small>
-                        <small>last updated: @Model.Date</small>
+                    <div class="d-flex flex-column card-footer text-body-secondary">
+                        <small class="me-auto"><strong>Created by:</strong> @Model.From.Name</small>
+                        <small><strong>Last updated:</strong> @Model.Date</small>
+                        <small><strong>Post rating:</strong> @Model.Rating</small>
                     </div>
                 </div>
             </div>
         </div>
     }
 
-    <a class="btn btn-info text-dark link-dark fw-bold" asp-area="" asp-controller="Blog" asp-action="Post">Create post</a>
+    <a class="btn btn-info text-dark link-dark fw-bold" href="/blog/post">Create post</a>
 </div>

@@ -1,6 +1,6 @@
 ﻿using PopularGameEngines.Models;
 using Microsoft.AspNetCore.Mvc;
-using System.CodeDom.Compiler;
+//using System.CodeDom.Compiler;
 
 namespace PopularGameEngines.Controllers {
     public class BlogController : Controller {
@@ -9,20 +9,19 @@ namespace PopularGameEngines.Controllers {
         public IActionResult Post() => View();
 
         [HttpPost]
-        public IActionResult Post(Message model) {
-            Random random = new Random();
-            int rnd = random.Next(0, 5);
+        public IActionResult Post(Message modal) {
+            Random rnd = new();
 
             // Fallbacks
-            model.Title ??= "Random title";
-            model.Text ??= "Lorem ipsum.";
-            model.Author ??= "John Smith";
+            modal.Title ??= "Random title";
+            modal.Text ??= "Lorem ipsum.";
+            modal.From.Name ??= "John Smith";
 
             // Originals
-            model.Date = DateOnly.FromDateTime(DateTime.Now);
-            for (var i = 0; i < rnd; i++) model.Rating += "⭐";
+            modal.Date = DateOnly.FromDateTime(DateTime.Now);
+            modal.Rating = rnd.Next(0, 10);
 
-            return View("Index", model);
+            return View("Index", modal);
         }
     }
 }
