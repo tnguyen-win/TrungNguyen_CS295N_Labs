@@ -25,31 +25,31 @@
                             <ul class="dropdown-menu">
                                 @* Overview *@
                                 <li>
-                                    <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Overview">Overview</a>
+                                    <a class="dropdown-item text-light" href="/home/overview">Overview</a>
                                 </li>
                                 @* Homepage *@
                                 <li>
-                                    <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Index">Homepage</a>
+                                    <a class="dropdown-item text-light" href="/">Homepage</a>
                                 </li>
                                 @* References *@
                                 <li>
-                                    <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="References">References</a>
+                                    <a class="dropdown-item text-light" href="/home/references">References</a>
                                 </li>
                                 <li>
                                     <hr class="dropdown-divider mb-0">
                                 </li>
                                 <li>
-                                    <a class="dropdown-item mb-lg-1" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                                    <a class="dropdown-item text-light mb-lg-1" href="/home/privacy">Privacy</a>
                                 </li>
                             </ul>
                         </li>
                         @* Blog *@
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Blog" asp-action="Index">Blog</a>
+                            <a class="nav-link text-light" href="/blog">Blog</a>
                         </li>
                         @* Scripting *@
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Scripting" asp-action="Index">Scripting</a>
+                            <a class="nav-link text-light" href="/scripting">Scripting</a>
                         </li>
                     </ul>
                 </div>
@@ -62,7 +62,7 @@
     </div>
     @* Footer *@
     <footer class="text-muted border-top border-dark-subtle shadow-lg-hack mt-5 p-5">
-        <div class="container">&copy; 2023 - PopularGameEngines - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></div>
+        <div class="container">&copy; 2023 - PopularGameEngines - <a class="text-info" href="/home/privacy">Privacy</a></div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

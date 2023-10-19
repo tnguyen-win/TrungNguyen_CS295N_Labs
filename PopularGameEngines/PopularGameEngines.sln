@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PopularGameEngines", "PopularGameEngines.csproj", "{1D6ABCFD-95B2-4BF9-AA5B-4153ADC59EA8}"
+	ProjectSection(SolutionItems) = preProject
+		..\Docs\SiteMap.md = ..\Docs\SiteMap.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
