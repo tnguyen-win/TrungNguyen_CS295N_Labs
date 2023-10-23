@@ -1,3 +1,7 @@
+html {
+	scroll-behavior: smooth !important;
+}
+
 a {
 	color: var(--bs-info);
 }
@@ -13,6 +17,12 @@ form * {
 
 label {
 	margin-right: 1rem;
+}
+
+.btn.btn-outline-secondary:hover,
+.btn.btn-outline-secondary:active {
+	background-color: inherit;
+	border-color: lightgray;
 }
 
 .dropdown-menu li a:hover,
