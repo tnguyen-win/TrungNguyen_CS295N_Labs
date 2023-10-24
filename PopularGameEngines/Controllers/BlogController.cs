@@ -14,7 +14,7 @@ namespace PopularGameEngines.Controllers {
 
             // Fallbacks
             modal.Title ??= "Random title";
-            modal.Text ??= "Lorem ipsum.";
+            modal.Body ??= "Lorem ipsum.";
             modal.From.Name ??= "John Smith";
 
             // Originals
