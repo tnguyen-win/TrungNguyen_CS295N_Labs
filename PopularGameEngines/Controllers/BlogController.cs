@@ -1,26 +1,45 @@
-﻿using PopularGameEngines.Models;
+﻿using PopularGameEngines.Data;
+using PopularGameEngines.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace PopularGameEngines.Controllers {
     public class BlogController : Controller {
-        public IActionResult Index() => View();
+        readonly AppDbContext context;
+
+        public BlogController(AppDbContext c) => context = c;
+
+        // Message(s)
+
+        public IActionResult Index() {
+            var model = context.Messages
+                .Include(m => m.From)
+                .ToList();
+
+            return View(model);
+        }
+
+        // Message
 
         public IActionResult Post() => View();
 
         [HttpPost]
-        public IActionResult Post(Message modal) {
+        public IActionResult Post(Message model) {
             Random rnd = new();
 
             // Fallbacks
-            modal.Title ??= "Random title";
-            modal.Body ??= "Lorem ipsum.";
-            modal.From.Name ??= "John Smith";
+            model.Title ??= "Random title";
+            model.Body ??= "Lorem ipsum.";
+            model.From.Name ??= "John Smith";
 
             // Originals
-            modal.Date = DateOnly.FromDateTime(DateTime.Now);
-            modal.Rating = rnd.Next(0, 10);
+            model.Date = DateOnly.FromDateTime(DateTime.Now);
+            model.Rating = rnd.Next(0, 10);
 
-            return View("Index", modal);
+            context.Messages.Add(model);
+            context.SaveChanges();
+
+            return RedirectToAction("Index", new { reviewId = model.MessageId });
         }
     }
 }

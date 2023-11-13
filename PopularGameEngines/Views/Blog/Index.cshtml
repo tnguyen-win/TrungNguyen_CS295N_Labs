@@ -1,36 +1,40 @@
-﻿@model Message
+﻿@model List<Message>
 @{
     ViewData["Title"] = "CS295N - Blog - Homepage";
 }
 
 <div class="mt-sm-5">
-    <h1 class="display-4 fw-bold mb-5">@ViewData["Title"]</h1>
-
+    <h1 class="display-4 fw-bold">@ViewData["Title"]</h1>
+    <br />
+    <h3>Past Posts</h3>
+    <br />
     @if (@Model != null) {
-        <div class="row row-cols-1 row-cols-lg-2 mb-5">
-            <div class="col">
-                <div class="card border border-secondary-subtle shadow-lg">
-                    <div class="d-flex card-body px-5 py-3">
-                        <div class="w-100">
-                            <h1 class="card-title fw-bold">@Model.Title</h1>
-                            <p class="card-text text-muted me-auto">@Model.Body</p>
+        <div class="row row-cols-1 row-cols-lg-3 g-4">
+            @foreach (var message in Model) {
+                <div class="col">
+                    <div class="card h-100 border border-secondary-subtle shadow-lg">
+                        <div class="d-flex card-body px-5 py-3">
+                            <div class="w-100">
+                                <h1 class="card-title fw-bold">@message.Title</h1>
+                                <p class="card-text text-muted me-auto">@message.Body</p>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-column card-footer text-muted border-secondary-subtle px-5 py-3">
+                            <small>
+                                <strong>Created by:</strong> @message.From?.Name
+                            </small>
+                            <small>
+                                <strong>Last updated:</strong> @message.Date
+                            </small>
+                            <small>
+                                <strong>Post rating:</strong> @message.Rating
+                            </small>
                         </div>
                     </div>
-                    <div class="d-flex flex-column card-footer text-muted border-secondary-subtle px-5 py-3">
-                        <small>
-                            <strong>Created by:</strong> @Model.From?.Name
-                        </small>
-                        <small>
-                            <strong>Last updated:</strong> @Model.Date
-                        </small>
-                        <small>
-                            <strong>Post rating:</strong> @Model.Rating
-                        </small>
-                    </div>
                 </div>
-            </div>
+            }
         </div>
+        <br />
     }
-
     <a class="btn btn-lg btn-info rounded-0 text-dark link-dark fw-bold" href="/blog/post">Create post</a>
 </div>
