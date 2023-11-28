@@ -2,7 +2,7 @@
 using PopularGameEngines.Models;
 using Microsoft.AspNetCore.Mvc;
 //using PopularGameEngines.Data;
-using System.Numerics;
+//using System.Numerics;
 
 namespace PopularGameEngines.Controllers {
     public class BlogController : Controller {
@@ -23,28 +23,40 @@ namespace PopularGameEngines.Controllers {
         public IActionResult Index(string author, string date) {
             List<Message> messages = (from m in repository.GetMessages() select m).ToList();
 
+            // Author + Date
+            if (author != null & date != null) {
+                try {
+                    DateOnly convertedDate = DateOnly.Parse(date);
+
+                    messages = (from m in repository.GetMessages()
+                                where m.From.Name == author
+                                & m.Date == convertedDate
+                                select m).ToList();
+                } catch { }
+            }
+
             // Author
             if (author != null & date == null) {
-                messages = (from m in repository.GetMessages()
-                                          where m.From.Name == author
-                                          select m).ToList();
+                var matchFound = false;
+
+                foreach (var m in repository.GetMessages()) if (m.From.Name == author) matchFound = true;
+
+                if (matchFound) {
+                    messages = (from m in repository.GetMessages()
+                                where m.From.Name == author
+                                select m).ToList();
+                }
             }
 
             // Date
-            else if (author == null & date != null) {
-                DateOnly convertedDate = DateOnly.Parse(date);
-                messages = (from m in repository.GetMessages()
-                                          where m.Date == convertedDate
-                                          select m).ToList();
-            }
+            if (author == null & date != null) {
+                try {
+                    DateOnly convertedDate = DateOnly.Parse(date);
 
-            // Author + Date
-            else if (author != null & date != null) {
-                DateOnly convertedDate = DateOnly.Parse(date);
-                messages = (from m in repository.GetMessages()
-                                          where m.From.Name == author
-                                          & m.Date == convertedDate
-                                          select m).ToList();
+                    messages = (from m in repository.GetMessages()
+                                where m.Date == convertedDate
+                                select m).ToList();
+                } catch { }
             }
 
             return View("Index", messages);
