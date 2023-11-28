@@ -1,22 +1,21 @@
 ﻿using PopularGameEngines.Data;
 using PopularGameEngines.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+//using PopularGameEngines.Data;
 
 namespace PopularGameEngines.Controllers {
     public class BlogController : Controller {
-        readonly AppDbContext context;
+        //readonly AppDbContext context;
+        readonly IRegistryRepository repository;
 
-        public BlogController(AppDbContext c) => context = c;
+        public BlogController(IRegistryRepository r) => repository = r;
 
         // Message(s)
 
         public IActionResult Index() {
-            var model = context.Messages
-                .Include(m => m.From)
-                .ToList();
+            var messages = repository.GetMessages();
 
-            return View(model);
+            return View(messages);
         }
 
         // Message
@@ -36,8 +35,8 @@ namespace PopularGameEngines.Controllers {
             model.Date = DateOnly.FromDateTime(DateTime.Now);
             model.Rating = rnd.Next(0, 10);
 
-            context.Messages.Add(model);
-            context.SaveChanges();
+            //int result =
+            repository.StoreMessage(model);
 
             return RedirectToAction("Index", new { reviewId = model.MessageId });
         }
