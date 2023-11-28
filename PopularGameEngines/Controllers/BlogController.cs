@@ -2,6 +2,7 @@
 using PopularGameEngines.Models;
 using Microsoft.AspNetCore.Mvc;
 //using PopularGameEngines.Data;
+using System.Numerics;
 
 namespace PopularGameEngines.Controllers {
     public class BlogController : Controller {
@@ -16,6 +17,37 @@ namespace PopularGameEngines.Controllers {
             var messages = repository.GetMessages();
 
             return View(messages);
+        }
+
+        [HttpPost]
+        public IActionResult Index(string author, string date) {
+            List<Message> messages = (from m in repository.GetMessages() select m).ToList();
+
+            // Author
+            if (author != null & date == null) {
+                messages = (from m in repository.GetMessages()
+                                          where m.From.Name == author
+                                          select m).ToList();
+            }
+
+            // Date
+            else if (author == null & date != null) {
+                DateOnly convertedDate = DateOnly.Parse(date);
+                messages = (from m in repository.GetMessages()
+                                          where m.Date == convertedDate
+                                          select m).ToList();
+            }
+
+            // Author + Date
+            else if (author != null & date != null) {
+                DateOnly convertedDate = DateOnly.Parse(date);
+                messages = (from m in repository.GetMessages()
+                                          where m.From.Name == author
+                                          & m.Date == convertedDate
+                                          select m).ToList();
+            }
+
+            return View("Index", messages);
         }
 
         // Message
@@ -38,7 +70,7 @@ namespace PopularGameEngines.Controllers {
             //int result =
             repository.StoreMessage(model);
 
-            return RedirectToAction("Index", new { reviewId = model.MessageId });
+            return RedirectToAction("Index", new { model.MessageId });
         }
     }
 }
