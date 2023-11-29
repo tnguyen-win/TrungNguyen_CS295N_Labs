@@ -25,14 +25,30 @@ namespace PopularGameEngines.Controllers {
 
             // Author + Date
             if (author != null & date != null) {
+                var matchFound = false;
+
+                foreach (var m in repository.GetMessages()) if (m.From.Name == author) matchFound = true;
+
                 try {
                     DateOnly convertedDate = DateOnly.Parse(date);
 
-                    messages = (from m in repository.GetMessages()
-                                where m.From.Name == author
-                                & m.Date == convertedDate
-                                select m).ToList();
-                } catch { }
+                    if (matchFound) {
+                        messages = (from m in repository.GetMessages()
+                                    where m.From.Name == author
+                                    & m.Date == convertedDate
+                                    select m).ToList();
+                    } else {
+                        messages = (from m in repository.GetMessages()
+                                    where m.Date == convertedDate
+                                    select m).ToList();
+                    }
+                } catch {
+                    if (matchFound) {
+                        messages = (from m in repository.GetMessages()
+                                    where m.From.Name == author
+                                    select m).ToList();
+                    }
+                }
             }
 
             // Author
