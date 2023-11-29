@@ -1,3 +1,4 @@
+using PopularGameEngines;
 using Microsoft.EntityFrameworkCore;
 using PopularGameEngines.Data;
 
@@ -22,4 +23,11 @@ app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthorization();
 app.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Index}/{id?}");
+
+using (var scope = app.Services.CreateScope()) {
+    var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+
+    SeedData.Seed(dbContext);
+}
+
 app.Run();

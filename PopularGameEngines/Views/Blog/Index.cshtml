@@ -4,9 +4,30 @@
 }
 
 <div class="mt-sm-5">
-    <h1 class="display-4 fw-bold">@ViewData["Title"]</h1>
+    <h1 class="display-4 fw-bold mb-5">@ViewData["Title"]</h1>
+    <form method="post">
+        @* Author *@
+        <div>
+            <label class="fw-bold m-0" for="author">Post sender</label>
+            <div class="input-group">
+                <span class="input-group-text border-secondary-subtle">Author</span>
+                <input for="author" class=" form-control border-secondary-subtle" name="author" />
+            </div>
+        </div>
+        @* Date *@
+        <div>
+            <label class="fw-bold m-0" for="date">Last updated</label>
+            <div class="input-group">
+                <span class="input-group-text border-secondary-subtle">Date</span>
+                <input for="date" class="form-control border-secondary-subtle" name="date" />
+            </div>
+        </div>
+        <input class="btn btn-lg btn-info rounded-0 text-dark link-dark fw-bold" type="submit" value="Filter" />
+        <a class="btn btn-lg btn-info rounded-0 text-dark link-dark fw-bold" href="/blog" />Reset Filter</a>
+    </form>
     <br />
-    <h3>Past Posts</h3>
+    <br />
+    <br />
     <br />
     @if (@Model != null) {
         <div class="row row-cols-1 row-cols-lg-3 g-4">
